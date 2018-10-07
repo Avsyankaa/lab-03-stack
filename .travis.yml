@@ -12,7 +12,11 @@ addons:
     - g++-7
     update: true
 
-env: CC=gcc-7 CXX=g++-7
+env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
+
+before_install:
+  - export CXX=${CXX_EVAL}
+  - export CC=${CC_EVAL}
 
 script:
   - chmod 777 ./cpplint.py
