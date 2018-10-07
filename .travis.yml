@@ -19,13 +19,13 @@ before_install:
   - export CC=${CC_EVAL}
 
 script:
-  - chmod 777 ./cpplint.py
-  - ( for file in $(find ./ -name "*.cpp"); do ./cpplint.py $file || exit; done );
-  # https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
-  - cmake -H. -B_builds -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold
-  - cmake --build _builds
-  - ( for file in $(find ./tests/ -name "*.cpp"); do echo $file; clang-check -analyze $file -p ./_builds/ || exit; done );
-  - ./_builds/executable
+- chmod 777 ./cpplint.py
+- ( for file in $(find ./ -name "*.cpp"); do ./cpplint.py $file || exit; done );
+# https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
+- cmake -H. -B_builds -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold
+- cmake --build _builds
+- ( for file in $(find ./tests/ -name "*.cpp"); do echo $file; clang-check -analyze $file -p ./_builds/ || exit; done );
+- cmake --build _builds --target test -- ARGS=--verbose
 
 notifications:
   email: false
