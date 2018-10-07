@@ -18,7 +18,7 @@ find_package(GTest CONFIG REQUIRED)
 
 add_executable(stack_tests ${CMAKE_CURRENT_SOURCE_DIR}/tests/init.cpp)
 
-target_include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(stack_tests ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(stack_tests GTest::main)
 
 enable_testing()
