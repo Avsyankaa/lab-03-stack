@@ -11,6 +11,8 @@ addons:
     - libstdc++-7-dev
     - g++-7
     update: true
+cache:
+  apt: true
 
 env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
 
