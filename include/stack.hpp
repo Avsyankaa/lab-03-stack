@@ -17,4 +17,4 @@ private:
   std::stack<T> stack;
 };
 
-#endif INCLUDE_STACK_HPP_
+#endif // INCLUDE_STACK_HPP_
