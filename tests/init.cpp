@@ -3,5 +3,5 @@
 #include <stack.hpp>
 
 TEST(StackTest, InitWithDefaultCtor) {
-  EXPECT_NO_THROW( stack<unsigned>{} );
+  EXPECT_NO_THROW(stack<unsigned>{});
 }
