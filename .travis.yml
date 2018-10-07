@@ -17,9 +17,6 @@ env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
 before_install:
 - export CXX=${CXX_EVAL}
 - export CC=${CC_EVAL}
-  
-install:
-- pip install cpplint
 
 script:
 - chmod 777 ./cpplint.py
