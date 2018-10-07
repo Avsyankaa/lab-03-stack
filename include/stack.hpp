@@ -1,3 +1,5 @@
+// Copyright 2018 Vyacheslav Vershinin
+
 #include <stack>
 
 template <typename T>
