@@ -15,9 +15,12 @@ addons:
     - g++-7
     update: true
 
+env:
+- CC=gcc-7
+- CXX=g++-7
+
 install: 
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
-  - eval "CC=/usr/bin/gcc && CXX=/usr/bin/g++"
 
 script:
   - chmod 777 ./cpplint.py
