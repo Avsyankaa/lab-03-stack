@@ -18,7 +18,7 @@ find_package(GTest CONFIG REQUIRED)
 
 # enum your files
 add_executable(stack_tests
-
+#  ${CMAKE_CURRENT_SOURCE_DIR}/tests/init.cpp
 )
 
 target_include_directories(stack_tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
