@@ -17,11 +17,11 @@ env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
 before_install:
 - export CXX=${CXX_EVAL}
 - export CC=${CC_EVAL}
+- pip install --user cpplint
 
 script:
-- chmod +x ./tools/cpplint/cpplint.py
 # sanitaizer check 
-- ( for file in $(find ./tests -name "*.cpp"); do ./tools/cpplint/cpplint.py $file || exit; done );
+- ( for file in $(find ./tests -name "*.cpp"); do cpplint $file || exit; done );
 - ./tools/polly/bin/polly --reconfig --toolchain sanitize-address --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
 # clang-check
 - ./tools/polly/bin/polly --reconfig --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
