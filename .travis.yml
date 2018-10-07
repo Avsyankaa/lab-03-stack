@@ -22,12 +22,12 @@ script:
 - chmod 777 ./cpplint.py
 # sanitaizer check 
 - ( for file in $(find ./tests -name "*.cpp"); do ./cpplint.py $file || exit; done );
-- ./polly/bin/polly --toolchain sanitize-address --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
+- ./polly/bin/polly --reconfig --toolchain sanitize-address --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
 # clang-check
-- ./polly/bin/polly --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
-- ( for file in $(find ./tests -name "*.cpp"); do echo $file; clang-check -analyze $file -p _builds/Default || exit; done );
+- ./polly/bin/polly --reconfig --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
+- ( for file in $(find ./tests -name "*.cpp"); do echo $file; clang-check -analyze $file -p _builds/default-Release || exit; done );
 # tests
-- ./polly/bin/polly --test --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
+- ./polly/bin/polly --reconfig --test --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
 
 # CMAKE_EXE_LINKER: https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
 
