@@ -19,6 +19,7 @@ before_install:
 - export CC=${CC_EVAL}
 
 script:
+- chmod +x ./tools/cpplint/cpplint.py
 # sanitaizer check 
 - ( for file in $(find ./tests -name "*.cpp"); do ./tools/cpplint/cpplint.py $file || exit; done );
 - ./tools/polly/bin/polly --reconfig --toolchain sanitize-address --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
