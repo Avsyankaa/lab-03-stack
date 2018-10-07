@@ -4,6 +4,3 @@
 [submodule "polly"]
 	path = tools/polly
 	url = https://github.com/ruslo/polly
-[submodule "tools/cpplint"]
-	path = tools/cpplint
-	url = https://github.com/cpplint/cpplint.git
