@@ -14,7 +14,7 @@ addons:
 cache:
   apt: true
   directories:
-    - $HOME/.hunter
+  - $HOME/.hunter
 
 env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
 
