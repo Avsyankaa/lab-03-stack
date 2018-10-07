@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 
+project(stack)
+
 include(gtest.cmake)
 include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR})
 
