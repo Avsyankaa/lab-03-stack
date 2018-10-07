@@ -1,7 +1,7 @@
 // Copyright 2018 Vyacheslav Vershinin
 
-#ifndef STACK_HPP
-#define STACK_HPP
+#ifndef INCLUDE_STACK_HPP_
+#define INCLUDE_STACK_HPP_
 
 #include <stack>
 
@@ -17,4 +17,4 @@ private:
   std::stack<T> stack;
 };
 
-#endif
+#endif INCLUDE_STACK_HPP_
