@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 
 include(gtest.cmake)
-include_directories(SYSTEM ./)
+include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR})
 
 string(APPEND CMAKE_CXX_FLAGS " -std=c++11 -O1 -fsanitize=address")
 string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wno-unused-command-line-argument -Wshadow -Wnon-virtual-dtor -pedantic")
@@ -9,8 +9,8 @@ string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wno-unused-command-line-argument 
 find_package(Threads)
 
 # enum your files
-add_executable(executable
-
+add_executable(executable 
+  ${CMAKE_CURRENT_SOURCE_DIR}/tests/init.cpp
 )
 
 target_link_libraries(executable -fsanitize=address gtest ${CMAKE_THREAD_LIBS_INIT})
