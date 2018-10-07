@@ -16,7 +16,10 @@ string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wno-unused-command-line-argument 
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
-add_executable(stack_tests ${CMAKE_CURRENT_SOURCE_DIR}/tests/init.cpp)
+# enum your files
+add_executable(stack_tests
+
+)
 
 target_include_directories(stack_tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(stack_tests GTest::main)
