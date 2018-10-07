@@ -19,13 +19,10 @@ env:
 - CC=gcc-7
 - CXX=g++-7
 
-install: 
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
-
 script:
   - chmod 777 ./cpplint.py
   - ( for file in $(find ./ -name "*.cpp"); do ./cpplint.py $file || exit; done );
   - cmake -H. -B_builds -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
   - cmake --build _builds
   - ( for file in $(find ../ -name "*.cpp"); do echo $file; clang-check -analyze $file -p ./ || exit; done );
-  - ./executable
+  - ./_builds/executable
