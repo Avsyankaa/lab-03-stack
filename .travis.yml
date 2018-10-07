@@ -20,17 +20,18 @@ cache:
 env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
 
 before_install:
-- export CXX=${CXX_EVAL}
-- export CC=${CC_EVAL}
+- export CXX=$CXX_EVAL
+- export CC=$CC_EVAL
 - pip install --user cpplint
 
 script:
-# sanitaizer check 
-- ( for file in $(find ./tests -name "*.cpp"); do cpplint $file || exit; done );
+- files = `find find -name "*.cpp" -or -name "*.hpp" -or -name ".h" -not -path "./_builds/*"`
+# sanitaizer check
+- ( for file in $files; do cpplint $file || exit; done );
 - ./tools/polly/bin/polly --reconfig --toolchain sanitize-address --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
 # clang-check
 - ./tools/polly/bin/polly --reconfig --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
-- ( for file in $(find ./tests -name "*.cpp"); do echo $file; clang-check -analyze $file -p _builds/default-Release || exit; done );
+- ( for file in $files; do echo $file; clang-check -analyze $file -p _builds/default-Release || exit; done );
 # tests
 - ./tools/polly/bin/polly --reconfig --test --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
 
