@@ -15,9 +15,7 @@ addons:
     - g++-7
     update: true
 
-env:
-- CC=gcc-7
-- CXX=g++-7
+env: CC=gcc-7 CXX=g++-7
 
 script:
   - chmod 777 ./cpplint.py
