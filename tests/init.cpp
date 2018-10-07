@@ -1,3 +1,5 @@
+// Copyright 2018 Vyacheslav Vershinin
+
 #include <gtest/gtest.h>
 
 #include <stack.hpp>
