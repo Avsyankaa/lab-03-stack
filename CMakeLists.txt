@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.4)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include("gate/cmake/HunterGate.cmake")
 
 HunterGate(
@@ -11,7 +14,6 @@ project(stack)
 
 include_directories(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-string(APPEND CMAKE_CXX_FLAGS " -std=c++11 -O1 -fsanitize=address")
 string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wno-unused-command-line-argument -Wshadow -Wnon-virtual-dtor -pedantic")
 
 hunter_add_package(GTest)
@@ -24,10 +26,7 @@ enable_testing()
 add_test(NAME tests COMMAND stack_tests) 
 
 # Для упрощения работы с данным конфигурационным файлом был сделан ряд изменений
-# 1. Вместо переменной `CMAKE_CXX_STANDARD` используется опция компилятора *-std=c++11*
-# 2. Вместо функции `target_include_directories` используется функция `include_directories`
-# 3. Вместо использования "header only" библиотеки, в вызов `include_directories` добавляется директория *include*
-# 4. Вместо переменной `CMAKE_CURRENT_SOURCE_DIR` используется символ `.`, обозначающий текущую директорию.
-# 5. Вмсето подключения скрипта валидатора файлов исходного кода *cpplint*, как submodule, используется прямое подключение.
-# 6. Вместо кросплатформенного санитайзера *sanitize-address* используется ручное изменение флагов.
+# 1. Вместо функции `target_include_directories` используется функция `include_directories`
+# 2. Вместо использования "header only" библиотеки, в вызов `include_directories` добавляется директория *include*.
+# 3. Вмсето подключения скрипта валидатора файлов исходного кода *cpplint*, как submodule, используется прямое подключение.
 # В промышленных проектах данный ряд упрощений будет не приемлем.
