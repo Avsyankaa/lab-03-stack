@@ -1,9 +1,8 @@
-// Copyright 2018 Vyacheslav Vershinin
+// Copyright 2018 Your Name <your_email>
 
 #include <gtest/gtest.h>
 
 #include <stack.hpp>
 
-TEST(StackTest, InitWithDefaultCtor) {
-  EXPECT_NO_THROW(stack<unsigned>{});
-}
+// TEST(StackTest, ...) {
+// }
