@@ -21,7 +21,8 @@ before_install:
 script:
   - chmod 777 ./cpplint.py
   - ( for file in $(find ./ -name "*.cpp"); do ./cpplint.py $file || exit; done );
-  - cmake -H. -B_builds -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+  # https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
+  - cmake -H. -B_builds -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold
   - cmake --build _builds
   - ( for file in $(find ../ -name "*.cpp"); do echo $file; clang-check -analyze $file -p ./ || exit; done );
   - ./_builds/executable
