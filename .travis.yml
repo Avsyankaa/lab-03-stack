@@ -24,6 +24,7 @@ script:
 # https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
 - export CMAKE_PARAMETERS=CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
 - ./polly/bin/polly --toolchain sanitize-address --config Release --output builds --fwd ${CMAKE_PARAMETERS}
+- ls builds
 - ( for file in $(find ./tests -name "*.cpp"); do echo $file; clang-check -analyze $file -p builds || exit; done );
 - ./polly/bin/polly --test --config Release --fwd ${CMAKE_PARAMETERS}
 
