@@ -22,10 +22,10 @@ script:
 - chmod 777 ./cpplint.py
 - ( for file in $(find ./ -name "*.cpp"); do ./cpplint.py $file || exit; done );
 # https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
-- cmake -H. -B_builds -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold
-- cmake --build _builds
+- export CMAKE_PARAMETERS=CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
+- ./polly/bin/polly --build --toolchain sanitize-address --config Release --output builds --fwd ${CMAKE_PARAMETERS}
 - ( for file in $(find ./tests/ -name "*.cpp"); do echo $file; clang-check -analyze $file -p ./_builds/ || exit; done );
-- cmake --build _builds --target test -- ARGS=--verbose
+- ./polly/bin/polly --test
 
 notifications:
   email: false
