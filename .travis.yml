@@ -25,7 +25,7 @@ script:
 - export CMAKE_PARAMETERS=CMAKE_EXE_LINKER="-fuse-ld=gold" CMAKE_EXPORT_COMPILE_COMMANDS=ON
 - ./polly/bin/polly --toolchain sanitize-address --config Release --output builds --fwd ${CMAKE_PARAMETERS}
 - ( for file in $(find ./tests -name "*.cpp"); do echo $file; clang-check -analyze $file -p builds || exit; done );
-- ./polly/bin/polly --test
+- ./polly/bin/polly --test --config Release --fwd ${CMAKE_PARAMETERS}
 
 notifications:
   email: false
