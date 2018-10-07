@@ -11,8 +11,11 @@ addons:
     - libstdc++-7-dev
     - g++-7
     update: true
+
 cache:
   apt: true
+  directories:
+    - $HOME/.hunter
 
 env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
 
@@ -31,7 +34,7 @@ script:
 # tests
 - ./tools/polly/bin/polly --reconfig --test --config Release --fwd CMAKE_EXE_LINKER="-fuse-ld=gold"
 
-# CMAKE_EXE_LINKER: https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
+# CMAKE_EXE_LINKER need to bugfix: https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
 
 notifications:
   email: false
